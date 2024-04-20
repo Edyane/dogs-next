@@ -10,7 +10,7 @@ export default async function Footer() {
                 width={28}
                 height={22}
             />
-            <p>Cats. Alguns direitos reservados.</p>
+            <p>Dogs. Todos os direitos reservados.</p>
         </footer>
     )
 }
