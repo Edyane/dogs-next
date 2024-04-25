@@ -29,6 +29,7 @@ li {
 img {
 	display: block;
 	max-width: 100%;
+	height: auto;
 }
 
 button,
@@ -68,7 +69,7 @@ a {
 	display: block;
 	width: 1.5rem;
 	height: 1.5rem;
-	background: rgb(255, 124, 17);
+	background: #72E1D1;
 	position: absolute;
 	bottom: 5px;
 	left: -5px;
