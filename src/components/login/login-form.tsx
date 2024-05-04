@@ -3,6 +3,7 @@
 import login from '@/actions/login';
 import { useFormState, useFormStatus } from 'react-dom';
 import Button from '@/components/forms/button';
+import Input from '@/components/forms/input';
 
 function FormButton() {
   const { pending } = useFormStatus();
@@ -28,6 +29,8 @@ export default function LoginForm() {
   return (
     <>
       <form action={action}>
+        <Input label="Usuário" />
+        <Input label="Senha" />
         <input type="text" name="username" placeholder="usuário" />
         <input type="password" name="password" placeholder="senha" />
         <FormButton />
