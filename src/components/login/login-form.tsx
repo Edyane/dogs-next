@@ -43,6 +43,11 @@ export default function LoginForm() {
 				<FormButton />
 			</form>
 			<Link className={styles.perdeu} href="/login/perdeu">Perdeu a senha?</Link>
+			<div className={styles.cadastro}>
+				<h2 className={styles.subtitle}>Cadastre-se</h2>
+				<p>Ainda não possui conta? Cadastre-se no site.</p>
+				<Link className="button" href="/login/criar">Cadastro</Link>
+			</div>
 		</>
 	);
 }
