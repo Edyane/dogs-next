@@ -32,7 +32,7 @@ export default function LoginForm() {
 
 	useEffect(() => {
 		if (state.ok) window.location.href = '/conta';
-	}, [state.ok])
+	}, [state.ok]);
 
 	return (
 		<>
@@ -42,12 +42,6 @@ export default function LoginForm() {
 				<ErrorMessage error={state.error} />
 				<FormButton />
 			</form>
-			<Link className={styles.perdeu} href="/login/perdeu">Perdeu a senha?</Link>
-			<div className={styles.cadastro}>
-				<h2 className={styles.subtitle}>Cadastre-se</h2>
-				<p>Ainda não possui conta? Cadastre-se no site.</p>
-				<Link className="button" href="/login/criar">Cadastro</Link>
-			</div>
 		</>
 	);
 }
