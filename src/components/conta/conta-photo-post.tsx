@@ -1,16 +1,19 @@
 'use client';
 
 import React from 'react';
+import Button from '@/components/forms/button';
 import { useFormState, useFormStatus } from 'react-dom';
 
 export default function ContaPhotoPost() {
-	// const [state, action] = useFormState(photoPost, {
-	// 	ok: false,
-	// 	error: '',
-	// 	data: null,
-	// });
+	const { pending } = useFormStatus();
 
 	return (
-		<h1>photo post</h1>
+		<>
+			{pending ? (
+				<Button disabled={pending}>Enviando...</Button>
+			) : (
+				<Button>Enviar</Button>
+			)}
+		</>
 	);
 }
