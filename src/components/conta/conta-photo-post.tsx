@@ -29,6 +29,12 @@ export default function ContaPhotoPost() {
 		data: null,
 	});
 
+	const [img, setImg] = React.useState('');
+	function handleImgChange({ target }: React.ChangeEvent<HTMLInputElement>) {
+		if (target.files) {
+			setImg(URL.createObjectURL(target.files[0]));
+		}
+	};
 
 
 	return (
