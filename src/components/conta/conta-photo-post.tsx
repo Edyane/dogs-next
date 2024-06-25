@@ -36,10 +36,22 @@ export default function ContaPhotoPost() {
 		}
 	};
 
-
 	return (
 		<section className={`${styles.photoPost} animeLeft`}>
-			<h1></h1>
+			<form action={action}>
+				<Input label="Nome" name="nome" type="text" />
+				<Input label="Peso" name="peso" type="number" />
+				<Input label="Idade" name="idade" type="number" />
+				<input
+					onChange={handleImgChange}
+					type="file"
+					name="img"
+					id="img"
+					className={styles.file}
+				/>
+				<ErrorMessage error={state.error} />
+				<FormButton />
+			</form>
 		</section>
 	);
 }
