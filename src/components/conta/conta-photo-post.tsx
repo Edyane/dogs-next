@@ -52,6 +52,12 @@ export default function ContaPhotoPost() {
 				<ErrorMessage error={state.error} />
 				<FormButton />
 			</form>
+			<div>
+				<div
+					className={styles.preview}
+					style={{ backgroundImage: `url(${img})` }}
+				></div>
+			</div>
 		</section>
 	);
 }
