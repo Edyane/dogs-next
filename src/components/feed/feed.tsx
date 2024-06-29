@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Photo } from '@/actions/photos-get';
+import FeedModal from './FeedModal';
 import FeedPhotos from "./feed-photos";
 
 export default function Feed({ photos }: { photos: Photo[] }) {
@@ -33,7 +34,18 @@ export default function Feed({ photos }: { photos: Photo[] }) {
 
     return (
         <div>
-            <FeedPhotos photos={photos} />
+            {modalPhoto && (
+                <FeedModal photo={modalPhoto} setModalPhoto={setModalPhoto} />
+            )}
+            {pages.map((page) => (
+                <FeedPhotos
+                    key={page}
+                    user={user}
+                    page={page}
+                    setModalPhoto={setModalPhoto}
+                    setInfinite={setInfinite}
+                />
+            ))}
         </div>
     )
 }
