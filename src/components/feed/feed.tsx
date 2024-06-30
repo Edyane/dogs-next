@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { Photo } from '@/actions/photos-get';
+import React from 'react';
 import FeedModal from './FeedModal';
-import FeedPhotos from "./feed-photos";
+import FeedPhotos from './FeedPhotos';
+import PropTypes from 'prop-types';
 
-export default function Feed({ photos }: { photos: Photo[] }) {
-    const [modalPhoto, setModalPhoto] = useState(null);
-    const [pages, setPages] = useState([1]);
-    const [infinite, setInfinite] = useState(true);
+const Feed = ({ user }) => {
+    const [modalPhoto, setModalPhoto] = React.useState(null);
+    const [pages, setPages] = React.useState([1]);
+    const [infinite, setInfinite] = React.useState(true);
 
-    useEffect(() => {
+    React.useEffect(() => {
         let wait = false;
         function infiniteScroll() {
             if (infinite) {
@@ -58,5 +58,18 @@ export default function Feed({ photos }: { photos: Photo[] }) {
                 </p>
             )}
         </div>
-    )
-}
+    );
+};
+
+Feed.defaultProps = {
+    user: 0,
+};
+
+Feed.propTypes = {
+    user: PropTypes.oneOfType([
+        PropTypes.string.isRequired,
+        PropTypes.number.isRequired,
+    ]),
+};
+
+export default Feed;
