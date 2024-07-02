@@ -1,75 +1,77 @@
-import React from 'react';
-import FeedModal from './FeedModal';
-import FeedPhotos from './FeedPhotos';
-import PropTypes from 'prop-types';
+'use client';
 
-const Feed = ({ user }) => {
-    const [modalPhoto, setModalPhoto] = React.useState(null);
-    const [pages, setPages] = React.useState([1]);
-    const [infinite, setInfinite] = React.useState(true);
+import photosGet, { Photo } from '@/actions/photos-get';
+import FeedPhotos from './feed-photos';
+import React from 'react';
+import Loading from '@/components/helper/loading';
+import styles from './feed.module.css';
+
+export default function Feed({
+    photos,
+    user,
+}: {
+    photos: Photo[];
+    user?: 0 | string;
+}) {
+    const [photosFeed, setPhotosFeed] = React.useState<Photo[]>(photos);
+    const [page, setPage] = React.useState(1);
+    const [loading, setLoading] = React.useState(false);
+    const [infinite, setInfinite] = React.useState(
+        photos.length < 6 ? false : true,
+    );
+
+    const fetching = React.useRef(false);
+    function infiniteScroll() {
+        console.log('aconteceu');
+        if (fetching.current) return;
+        fetching.current = true;
+        setLoading(true);
+        setTimeout(() => {
+            setPage((currentPage) => currentPage + 1);
+            fetching.current = false;
+            setLoading(false);
+        }, 1000);
+    }
 
     React.useEffect(() => {
-        let wait = false;
-        function infiniteScroll() {
-            if (infinite) {
-                const scroll = window.scrollY;
-                const height = document.body.offsetHeight - window.innerHeight;
-                if (scroll > height * 0.75 && !wait) {
-                    setPages((pages) => [...pages, pages.length + 1]);
-                    wait = true;
-                    setTimeout(() => {
-                        wait = false;
-                    }, 500);
-                }
+        if (page === 1) return;
+        async function getPagePhotos(page: number) {
+            const actionData = await photosGet(
+                { page, total: 6, user: 0 },
+                {
+                    cache: 'no-store',
+                },
+            );
+            if (actionData && actionData.data !== null) {
+                const { data } = actionData;
+                setPhotosFeed((currentPhotos) => [...currentPhotos, ...data]);
+                if (data.length < 6) setInfinite(false);
             }
         }
+        getPagePhotos(page);
+    }, [page]);
 
-        window.addEventListener('wheel', infiniteScroll);
-        window.addEventListener('scroll', infiniteScroll);
-        return () => {
-            window.removeEventListener('wheel', infiniteScroll);
+    React.useEffect(() => {
+        if (infinite) {
+            window.addEventListener('scroll', infiniteScroll);
+            window.addEventListener('wheel', infiniteScroll);
+        } else {
             window.removeEventListener('scroll', infiniteScroll);
+            window.removeEventListener('wheel', infiniteScroll);
+        }
+        return () => {
+            window.removeEventListener('scroll', infiniteScroll);
+            window.removeEventListener('wheel', infiniteScroll);
         };
     }, [infinite]);
 
     return (
         <div>
-            {modalPhoto && (
-                <FeedModal photo={modalPhoto} setModalPhoto={setModalPhoto} />
-            )}
-            {pages.map((page) => (
-                <FeedPhotos
-                    key={page}
-                    user={user}
-                    page={page}
-                    setModalPhoto={setModalPhoto}
-                    setInfinite={setInfinite}
-                />
-            ))}
-            {!infinite && !user && (
-                <p
-                    style={{
-                        textAlign: 'center',
-                        padding: '2rem 0 4rem 0',
-                        color: '#888',
-                    }}
-                >
-                    Não existem mais postagens.
-                </p>
-            )}
+            <FeedPhotos photos={photosFeed} />
+            <div className={styles.loadingWrapper}>
+                {infinite ? loading && <Loading /> : <p>Não existem mais postagens.</p>}
+            </div>
         </div>
     );
-};
+}
 
-Feed.defaultProps = {
-    user: 0,
-};
-
-Feed.propTypes = {
-    user: PropTypes.oneOfType([
-        PropTypes.string.isRequired,
-        PropTypes.number.isRequired,
-    ]),
-};
-
-export default Feed;
