@@ -37,4 +37,4 @@ export default async function photosGet(
 	} catch (error) {
 		return apiError(error);
 	}
-};
+}
