@@ -1,14 +1,14 @@
 import ContaHeader from '@/components/conta/conta-header';
 
 export default async function ContaLayout({
-    children,
+  children,
 }: {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-    return (
-        <div className="container">
-            <ContaHeader />
-            {children}
-        </div>
-    );
-};
+  return (
+    <div className="container">
+      <ContaHeader />
+      {children}
+    </div>
+  );
+}
