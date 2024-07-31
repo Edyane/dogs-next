@@ -1,33 +1,34 @@
-"use server";
+'use server';
 
-import { PHOTO_POST } from "@/functions/api";
-import apiError from "@/functions/api-error";
-import { revalidateTag } from "next/cache";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+import { PHOTO_GET } from '@/functions/api';
+import apiError from '@/functions/api-error';
+import { Photo } from './photos-get';
 
-export default async function photoPost(state: {}, formData: FormData) {
-	const token = cookies().get("token")?.value;
-	const nome = formData.get("nome") as string | null;
-	const idade = formData.get("idade") as string | null;
-	const peso = formData.get("peso") as string | null;
-	const img = formData.get("img") as File;
+export type Comment = {
+  comment_ID: string;
+  comment_post_ID: string;
+  comment_author: string;
+  comment_content: string;
+};
 
-	try {
-		if (!token || !nome || !idade || !peso || img.size === 0)
-			throw new Error("Preencha os dados.");
-		const { url } = PHOTO_POST();
-		const response = await fetch(url, {
-			method: "POST",
-			headers: {
-				Authorization: "Bearer " + token,
-			},
-			body: formData,
-		});
-		if (!response.ok) throw new Error("Email ou usuário já cadastrado.");
-	} catch (error: unknown) {
-		return apiError(error);
-	}
-	revalidateTag("photos");
-	redirect("/conta");
+export type PhotoData = {
+  photo: Photo;
+  comments: Comment[];
+};
+
+export default async function photoGet(id: string) {
+  try {
+    const { url } = PHOTO_GET(id);
+    const response = await fetch(url, {
+      next: {
+        revalidate: 60,
+        tags: ['photos', 'comment'],
+      },
+    });
+    if (!response.ok) throw new Error('Erro ao pegar a foto.');
+    const data = (await response.json()) as PhotoData;
+    return { data, ok: true, error: '' };
+  } catch (error) {
+    return apiError(error);
+  }
 }
