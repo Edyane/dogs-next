@@ -19,4 +19,3 @@ Este projeto foi desenvolvido como parte do curso de React e TypeScript da Origa
 
 ![TypeScript](https://ziadoua.github.io/m3-Markdown-Badges/badges/TypeScript/typescript2.svg)
 ![Next.js](https://ziadoua.github.io/m3-Markdown-Badges/badges/NextJS/nextjs1.svg)
-![Vercel](https://ziadoua.github.io/m3-Markdown-Badges/badges/Vercel/vercel3.svg)
