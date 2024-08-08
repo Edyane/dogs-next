@@ -1,36 +1,22 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Dogs: Rede Social para Cães 🐶
 
-## Getting Started
+Bem-vindo ao "Dogs", uma aplicação de mídia social projetada especificamente para nossos amigos caninos, desenvolvida utilizando TypeScript e Next.js. 
 
-First, run the development server:
+### Projeto
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Este projeto foi desenvolvido como parte do curso de React e TypeScript da Origamid, com o propósito de reescrever um sistema previamente criado em JavaScript, com foco na comparação entre os dois ambientes e na compreensão aprofundada do ecossistema TypeScript.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Objetivos principais:**
+- Recriar um sistema existente com JavaScript, desta vez utilizando TypeScript.
+- Explorar e dominar as nuances e vantagens oferecidas pelo TypeScript no contexto de desenvolvimento web moderno.
+- Ganhar proficiência prática com Next.js, um framework poderoso para aplicações React.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Links Relevantes
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- [Repositório do Projeto no GitHub](https://github.com/Edyane/dogs) - Origem do projeto desenvolvido no curso de React e JavaScript da Origamid.
 
-## Learn More
+### Tecnologias Utilizadas
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![TypeScript](https://ziadoua.github.io/m3-Markdown-Badges/badges/TypeScript/typescript2.svg)
+![Next.js](https://ziadoua.github.io/m3-Markdown-Badges/badges/NextJS/nextjs1.svg)
+![Vercel](https://ziadoua.github.io/m3-Markdown-Badges/badges/Vercel/vercel3.svg)
