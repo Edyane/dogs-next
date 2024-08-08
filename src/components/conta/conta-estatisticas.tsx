@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './conta-estatisticas.module.css';
 import { VictoryPie, VictoryChart, VictoryBar } from 'victory';
 import { StatsData } from '@/actions/stats-get';
@@ -11,10 +11,10 @@ type GraphData = {
 };
 
 export default function ContaEstatisticas({ data }: { data: StatsData[] }) {
-	const [graph, setGraph] = React.useState<GraphData[]>([]);
-	const [total, setTotal] = React.useState(0);
+	const [graph, setGraph] = useState<GraphData[]>([]);
+	const [total, setTotal] = useState(0);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		const graphData = data.map((item) => {
 			return {
 				x: item.title,

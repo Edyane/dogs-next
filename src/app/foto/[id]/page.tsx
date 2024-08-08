@@ -3,27 +3,27 @@ import PhotoContent from '@/components/photo/photo-content';
 import { notFound } from 'next/navigation';
 
 type FotoIdParams = {
-  params: {
-    id: string;
-  };
+	params: {
+		id: string;
+	};
 };
 
 export async function generateMetadata({ params }: FotoIdParams) {
-  const { data } = await photoGet(params.id);
+	const { data } = await photoGet(params.id);
 
-  if (!data) return { titlte: 'Fotos' };
-  return {
-    title: data.photo.title,
-  };
+	if (!data) return { titlte: 'Fotos' };
+	return {
+		title: data.photo.title,
+	};
 }
 
 export default async function FotoIdPage({ params }: FotoIdParams) {
-  const { data } = await photoGet(params.id);
+	const { data } = await photoGet(params.id);
 
-  if (!data) return notFound();
-  return (
-    <section className="container mainContainer">
-      <PhotoContent data={data} single={true} />
-    </section>
-  );
+	if (!data) return notFound();
+	return (
+		<section className="container mainContainer">
+			<PhotoContent data={data} single={true} />
+		</section>
+	);
 }
