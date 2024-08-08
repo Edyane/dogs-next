@@ -1,6 +1,6 @@
 ## Dogs: Rede Social para Cães 🐶
 
-Bem-vindo ao "Dogs", uma aplicação de mídia social projetada especificamente para nossos amigos caninos, desenvolvida utilizando TypeScript e Next.js. 
+"Dogs" é uma aplicação de mídia social projetada especificamente para nossos amigos caninos, desenvolvida utilizando TypeScript e Next.js. 
 
 ### Projeto
 
